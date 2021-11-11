@@ -13,8 +13,9 @@ ADD sources.list /app
 # Tell Ubuntu non-interactive install
 ARG DEBIAN_FRONTEND=noninteractive
 
-
-RUN ./setup-ubuntu.sh ${ARCH}
+RUN ls -la /app
+RUN chmod 777 /app/setup-ubuntu.sh \
+    && ./setup-ubuntu.sh ${ARCH}
 
 RUN apt-get install -y ca-certificates
 RUN update-ca-certificates
