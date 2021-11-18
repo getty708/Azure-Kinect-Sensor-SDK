@@ -47,3 +47,26 @@ transformation_example playback output.mkv
 transformation_example playback output.mkv 2000
 transformation_example playback output.mkv 2000 c:\data\out.ply
 ```
+
+
+### エラー: transform_engine_start_helper(). Transform engine create and initialize failed with error code: 204.
+
+```
+root@2f587a19cd72:~/Azure-Kinect-Sensor-SDK/examples/transformation/build# ./transformation_example playback /root/Azure-Kinect-Sensor-SDK/dataStore/20211014_U0001_S0500_kinect.mkv /root/Azure-Kinect-Sensor-SDK/dataStore/outputs/test.ply
+Seeking to timestamp: 0/1768400 (ms)
+[2021-11-18 14:51:00.796] [error] [t=20514] /__w/1/s/extern/Azure-Kinect-Sensor-SDK/src/tewrapper/tewrapper.c (61): transform_engine_start_helper(). Transform engine create and initialize failed with error code: 204.
+[2021-11-18 14:51:00.796] [error] [t=20514] /__w/1/s/extern/Azure-Kinect-Sensor-SDK/src/tewrapper/tewrapper.c (68): teresult == K4A_DEPTH_ENGINE_RESULT_SUCCEEDED returned failure in transform_engine_start_helper()
+[2021-11-18 14:51:00.796] [error] [t=20514] /__w/1/s/extern/Azure-Kinect-Sensor-SDK/src/tewrapper/tewrapper.c (86): transform_engine_start_helper(tewrapper) returned failure in transform_engine_thread()
+[2021-11-18 14:51:00.797] [error] [t=20477] /__w/1/s/extern/Azure-Kinect-Sensor-SDK/src/tewrapper/tewrapper.c (313): tewrapper_create(). Transform Engine thread failed to start
+[2021-11-18 14:51:00.797] [error] [t=20477] /__w/1/s/extern/Azure-Kinect-Sensor-SDK/src/transformation/transformation.c (637): transformation_context->tewrapper != NULL returned failure in transformation_create()
+Failed to get color image from capture
+root@2f587a19cd72:~/Azure-Kinect-Sensor-SDK/examples/transformation/build# glxinfo
+bash: glxinfo: command not found
+```
+
+参考:
+- ばっちりイシュー https://github.com/microsoft/Azure-Kinect-Sensor-SDK/issues/1166
+- Dockerでの対応
+    - https://github.com/microsoft/Azure-Kinect-Sensor-SDK/issues/1258#issuecomment-648943546
+
+ディスプレイを接続した状態で実行するしかなさそう．GUIとRDP入れても良いがめんどいな．

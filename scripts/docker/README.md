@@ -52,6 +52,24 @@ Failed to compute transformed depth image
 Failed to transform depth to color
 ```
 
+## libjpgturboのインストール
+
+```
+git clone https://github.com/libjpeg-turbo/libjpeg-turbo.git
+cd libjpeg-turbo/
+mkdir build
+cd build
+CFLAGS=-m32
+LDFLAGS=-m32
+cmake -G"Unix Makefiles"  ..
+make 
+make install
+```
+
+これで，libjpg-turboのcmakeファイルが `/opt/libjpeg-turbo/lib64/cmake/` に作成される．
+
+
+
 ## Example
 Exampleを個別にビルドするためには，CMakeList.txt を編集することが必要
 
